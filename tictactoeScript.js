@@ -54,13 +54,14 @@ let player = {
         } else {
             this.value = 'O';
         }
+        console.log(this.value +' Where do you want to place your mark?');
         return this.value;
     }, 
 
     getMove: function(){
-        let move = prompt('Where do you place your mark?');
+        let move = prompt(this.value + 'Where do you place your mark?'); 
         if (move === null){
-            return;
+            game.end();
         } else {
             return move;
         }
@@ -86,6 +87,7 @@ function checkForDraw(gameboard){
         }
     };
     if (gameOptions == gameboard().length){
+        returnGB(gameboard);
         console.log("it's a draw, game over!");
         game.end();
     }
@@ -153,12 +155,11 @@ function GameControl() {
     while(startGame == true){
         // create gameboard
         returnGB(gameboard);
-        getPlayerInput(player);
-        // addMove(gameboard, move, player)
-        // checkSolutions();
-        // checkForDraw(gameboard);
+        addMove( player.getValue(), player.getMove() );
+        checkSolutions(gameboard);
+        checkForDraw(gameboard);
 
     }
 };
 
-// GameControl();
+GameControl();
