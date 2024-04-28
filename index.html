@@ -7,7 +7,44 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
+    <div class="Header">
+        <div class="headerDiv">
+            <h1>Tic Tac Toe</h1>
+            <div class="Players">
+                <div class="PlayerOne">
+                    <label for="PlayerOne">Player X:</label>
+                    <input type="text" id="PlayerOne" placeholder="Player 1">
+                </div >
+                <div class="PlayerTwo">
+                    <label for="PlayerTwo">Player O:</label>
+                    <input type="text" id="PlayerTwo" placeholder="Player 2">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Main">
+        <div class="Gamebody">
+            <div class="Button _0"></div>
+            <div class="Button _1"></div>
+            <div class="Button _2"></div>
+            <div class="Button _3"></div>
+            <div class="Button _4"></div>
+            <div class="Button _5"></div>
+            <div class="Button _6"></div>
+            <div class="Button _7"></div>
+            <div class="Button _8"></div>
+        </div>
+        <dialog class="dialog"> 
+            <p class="dialogText"></p>
+            <div class="buttonContainer">
+                <button class="dialogButton">Ok</button>
+            </div>
+        </dialog>  
+    </div>
+    <div class="Footer">
+        <p>Made by: Golan van der Bend</p>
+    </div>
+
     <script src="tictactoeScript.js" defer></script>
 </body>
 </html>

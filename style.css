@@ -1,0 +1,83 @@
+.Header {
+    display: flex;
+    justify-content: center;
+}
+
+.headerDiv {
+    width: 450px;
+}
+
+.headerDiv h1{
+    display: flex;
+    justify-content: center;
+}
+
+.Players {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+    margin-top: -20px;
+}
+
+.Main {
+    display: flex;
+    justify-content: center;
+}
+
+.Gamebody {
+    border: solid 2px black;
+    width: 450px;
+    height: 450px;
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-template-rows: 150px 150px 150px;
+    padding: 10px;
+}
+
+.Button {
+    border: solid 1px gray;
+    padding: 10px;
+    font-size: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Button._0 {
+    border-left-style: hidden;
+    border-top-style: hidden;
+}
+.Button._1 {
+    border-top-style: hidden;
+}
+.Button._2 {
+    border-right-style: hidden;
+    border-top-style: hidden;
+}
+.Button._3 {
+    border-left-style: hidden;
+}
+.Button._5 {
+    border-right-style: hidden;
+}
+.Button._6 {
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+}
+.Button._7 {
+    border-bottom-style: hidden;
+}
+.Button._8 {
+    border-right-style: hidden;
+    border-bottom-style: hidden;
+}
+
+.Footer {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
