@@ -81,3 +81,25 @@
     display: flex;
     justify-content: center;
 }
+
+.playerNames {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-top: -5px;
+}
+
+.PlayerOne {
+    margin: 0px 0px 5px 5px;
+}
+
+.PlayerTwo {
+    margin: 5px 0px 0px 5px;
+}
+
+.dialogBackContinue {
+    display: flex;
+    justify-content: space-evenly;
+}
+

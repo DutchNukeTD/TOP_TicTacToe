@@ -204,6 +204,9 @@ function GameControl() {
 
 // GameControl(); // Aan vanaf het begin?
 
+const startDialog = document.querySelector('.dialogStart');
+startDialog.showModal();
+
 
 /////////////////////////////////////////////////////////
 // HTML INTERACTION //
@@ -237,4 +240,47 @@ dialog.addEventListener("click", (event) =>{
         button.innerHTML = "";
     })
     dialog.close();
+});
+
+
+const gameMode = document.querySelector('.dialogGameMode');
+startDialog.addEventListener("click", (event) => {
+    startDialog.close();
+    gameMode.showModal();
+});
+
+const gameModes = document.querySelectorAll('.gamemode');
+const TwoPlayer = document.querySelector('.dialogTwoPlayer');
+const btnContinue = document.querySelector('.Continue');
+const btnBack = document.querySelector('.Back');
+const namePlayerOne = document.querySelector('#PlayerOne');
+const namePlayerTwo = document.querySelector('#PlayerTwo');
+const dialogPlayerOne = document.querySelector('#dialogPlayerOne');
+const dialogPlayerTwo = document.querySelector('#dialogPlayerTwo');
+
+gameModes.forEach((gamemode) => {
+    gamemode.addEventListener("click", (event)=>{
+        if (event.target.classList.contains("TwoPlayers")) {
+            // Open dialog to set two names
+            gameMode.close();
+            TwoPlayer.showModal();
+        }
+            if (event.target.classList.contains("Continue")) {
+                // Choose Continue
+                TwoPlayer.close();
+                namePlayerOne.value = dialogPlayerOne.value;
+                namePlayerTwo.value = dialogPlayerTwo.value;
+                game.start(); 
+            }
+            if (event.target.classList.contains("Back")) {
+                // Choose Back
+                TwoPlayer.close();
+                gameMode.showModal();
+            }
+
+        if (event.target.classList.contains("VSComputer")) {
+            // Choose X or O
+            gameMode.close();
+        }
+    })
 });
