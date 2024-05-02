@@ -132,6 +132,8 @@ function getGB() {
     return solutions;
 };
 
+const ScorePlayerOne = document.querySelector('.ScorePlayerOne');
+const ScorePlayerTwo = document.querySelector('.ScorePlayerTwo');
 
 // Loop thru solutions to check if the game has been won. 
 function checkSolutions(){
@@ -153,11 +155,13 @@ function checkSolutions(){
                 console.log('X has won!');
                 dialogText.innerHTML = "X has won!";
                 dialog.showModal();
+
             } else {
                 console.log(nameX.value + ' has won!');
                 dialogText.innerHTML = nameX.value+ " has won!";
                 dialog.showModal();
             }
+            ScorePlayerOne.innerHTML = Number(ScorePlayerOne.innerHTML) + 1
             game.end();
         } else if (countO == 3) {
             returnGB(gameboard);
@@ -171,11 +175,13 @@ function checkSolutions(){
                 dialogText.innerHTML = nameO.value+ " has won!";
                 dialog.showModal();
             }
+            ScorePlayerTwo.innerHTML = Number(ScorePlayerTwo.innerHTML) + 1
             game.end();
         }
     }
-    // console.log('Check done!'); conform that check is done. 
 };
+
+
 
 // let startGame = true;  --> niet nodig?
 const game = {
@@ -204,13 +210,13 @@ function GameControl() {
 
 // GameControl(); // Aan vanaf het begin?
 
-const startDialog = document.querySelector('.dialogStart');
-startDialog.showModal();
-
-
 /////////////////////////////////////////////////////////
 // HTML INTERACTION //
 /////////////////////////////////////////////////////////
+
+const dialog = document.querySelector('.dialog');
+const startDialog = document.querySelector('.dialogStart');
+startDialog.showModal();
 
 const buttons = document.querySelectorAll('.Button');
 buttons.forEach((button) => {
@@ -230,7 +236,7 @@ buttons.forEach((button) => {
     })
 });
 
-const dialog = document.querySelector('.dialog');
+
 let dialogText = document.querySelector('.dialogText');
 
 const dialogButton = document.querySelector('.dialogButton');
