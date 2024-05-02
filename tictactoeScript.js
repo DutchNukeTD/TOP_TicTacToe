@@ -161,7 +161,7 @@ function checkSolutions(){
             game.end();
         } else if (countO == 3) {
             returnGB(gameboard);
-            let nameO = document.querySelector('#PlayerTwo');
+            const nameO = document.querySelector('#PlayerTwo');
             if (nameO.value == '') {
                 console.log('O has won!');
                 dialogText.innerHTML = "O has won!";
@@ -189,18 +189,59 @@ const game = {
     }
 }
 
+// function computerOptions(solutions, player){
+//     getGB();
+//     solutionOption = []
+//     for (let option = 0; option < solutions.length; option++){
+//         solutionCount = 0;
+//         for (let i = 0; i < solutions[option].length; i++){
+//             if (solutions[option][i] == this.player) {
+                
+//             } else {
+//                 solutionCount = 0;
+//             }
+//         }
+//         if (solutionCount == 3) {
+//             solutionOption.append(solutions[option])
+//         }
+//     return solutionOption;
+// }
 
-function GameControl() {
-    game.start();
+// function computerMove() {
 
-    while(startGame == true){
-        // create gameboard
-        returnGB(gameboard);
-        // addMove( player.getValue(), player.getMove() );
-        checkSolutions(gameboard);
-        checkForDraw(gameboard);
+// }
+
+function computerMoveRandom(gameboard) {
+    getMove = true;
+    while (getMove) {
+        randomNumber = Math.floor(Math.random()*gameboard.length)
+        if (gameboard[randomNumber] == '') {
+            getMove = false;
+            return randomNumber;
+        }
     }
-};
+    // addMove( player.getValue(), computerMoveRandom(gameboard()) )
+}
+
+function updateGUIGameboard(gameboard) {
+    
+}
+
+
+
+
+////////// console play only. //////////// 
+// function GameControl() {
+//     game.start();
+
+//     while(startGame == true){
+//         // create gameboard
+//         returnGB(gameboard);
+//         // addMove( player.getValue(), player.getMove() );
+//         checkSolutions(gameboard);
+//         checkForDraw(gameboard);
+//     }
+// };
 
 // GameControl(); // Aan vanaf het begin?
 
@@ -233,13 +274,14 @@ buttons.forEach((button) => {
 const dialog = document.querySelector('.dialog');
 let dialogText = document.querySelector('.dialogText');
 
-const dialogButton = document.querySelector('.dialogButton');
+const dialogRestart = document.querySelector('.dialogRestart');
 dialog.addEventListener("click", (event) =>{
     resetGB(gameboard);
     buttons.forEach((button) => {
         button.innerHTML = "";
     })
     dialog.close();
+    game.start();
 });
 
 
@@ -257,6 +299,13 @@ const namePlayerOne = document.querySelector('#PlayerOne');
 const namePlayerTwo = document.querySelector('#PlayerTwo');
 const dialogPlayerOne = document.querySelector('#dialogPlayerOne');
 const dialogPlayerTwo = document.querySelector('#dialogPlayerTwo');
+const dialogVSComputer = document.querySelector('.dialogVSComputer');
+const dialogBack = document.querySelector('.dialogBack');
+const dialogStart = document.querySelector('.dialogStart');
+const playerOneComputer = document.querySelector('.PlayerOneLabel');
+const playerTwoComputer = document.querySelector('.PlayerTwoLabel');
+const nameX = document.querySelector('#PlayerOne');
+const nameO = document.querySelector('#PlayerTwo');
 
 gameModes.forEach((gamemode) => {
     gamemode.addEventListener("click", (event)=>{
@@ -279,8 +328,51 @@ gameModes.forEach((gamemode) => {
             }
 
         if (event.target.classList.contains("VSComputer")) {
-            // Choose X or O
+            // Give player name
+            // Go back
+            // Start
             gameMode.close();
+            dialogVSComputer.showModal();
         }
+            if (event.target.classList.contains("dialogBack")) {
+                // Choose Back
+                // back to gameMode
+                dialogVSComputer.close();
+                gameMode.showModal();
+            }
+            if (event.target.classList.contains("X")) {
+                // Choose X
+                // close dialog
+                dialogVSComputer.close();
+                game.start();
+                playerTwoComputer.innerHTML = 'Computer O';
+                // remove player2 text button.
+                nameO.style.display = "none"; 
+            }
+            if (event.target.classList.contains("O")) {
+                // Choose X
+                // close dialog
+                dialogVSComputer.close();
+                game.start();
+                playerOneComputer.innerHTML = 'Computer X';
+                // remove player2 text button.
+                nameX.style.display = "none"; 
+            }
+        // End game dialog
+        // Menu or Restart
+        if (event.target.classList.contains("dialogMenu")) {
+            // Choose Menu
+            // close dialog
+            dialog.close();
+            game.end();
+            // set Player X and O back to normal.
+            playerOneComputer.innerHTML = 'Player X';
+            playerTwoComputer.innerHTML = 'Player O';
+            nameX.style.display = "inline-block";
+            nameO.style.display = "inline-block";
+            gameMode.showModal();
+        }
+            // dialogRestart
+
     })
 });

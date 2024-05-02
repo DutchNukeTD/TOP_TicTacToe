@@ -12,11 +12,11 @@
             <h1>Tic Tac Toe</h1>
             <div class="Players">
                 <div class="PlayerOne">
-                    <label for="PlayerOne">Player X:</label>
+                    <label class="PlayerOneLabel" for="PlayerOne">Player X:</label>
                     <input type="text" id="PlayerOne" placeholder="Player 1">
                 </div >
                 <div class="PlayerTwo">
-                    <label for="PlayerTwo">Player O:</label>
+                    <label class="PlayerTwoLabel" for="PlayerTwoLabel">Player O:</label>
                     <input type="text" id="PlayerTwo" placeholder="Player 2">
                 </div>
             </div>
@@ -40,7 +40,7 @@
             </div>
         </dialog>
         <dialog class="dialogGameMode">
-            <p>Choose game mode:</p>
+            <p class="playerNames">Choose game mode:</p>
             <div>
                 <button class="gamemode TwoPlayers">2 players</button>
                 <button class="gamemode VSComputer">VS computer</button>
@@ -50,11 +50,11 @@
             <p class="playerNames">Choose players names:</p>
             <div class="Players">
                 <div class="divPlayersNames">
-                    <div class="PlayerOne">
+                    <div class="dialogPlayerOne">
                         <label for="dialogPlayerOne">Player X:</label>
                         <input type="text" id="dialogPlayerOne" placeholder="Player 1">
                     </div >
-                    <div class="PlayerTwo">
+                    <div class="dialogPlayerTwo">
                         <label for="dialogPlayerTwo">Player O:</label>
                         <input type="text" id="dialogPlayerTwo" placeholder="Player 2">
                     </div>
@@ -68,9 +68,22 @@
         <dialog class="dialog"> 
             <p class="dialogText"></p>
             <div class="buttonContainer">
-                <button class="dialogButton">Ok</button>
+                <button class="gamemode dialogMenu">Menu</button>
+                <button class="gamemode dialogRestart">restart</button>
             </div>
-        </dialog>  
+        </dialog> 
+        <dialog class="dialogVSComputer"> 
+            <div class="dialogContainer">
+                <p class="playerNames">Choose your side:</p>
+                <div class="dialogPlayerOneComputer">
+                    <button class="gamemode XOButton X">X</button>
+                    <button class="gamemode XOButton O">O</button>
+                </div >
+                <div class="dialogBackContinue">
+                    <button class="gamemode dialogBack">Back</button>
+                </div>
+            </div>
+        </dialog> 
     </div>
     <div class="Footer">
         <p>Made by: Golan van der Bend</p>

@@ -90,11 +90,11 @@
     margin-top: -5px;
 }
 
-.PlayerOne {
+.dialogPlayerOne {
     margin: 0px 0px 5px 5px;
 }
 
-.PlayerTwo {
+.dialogPlayerTwo {
     margin: 5px 0px 0px 5px;
 }
 
@@ -103,3 +103,16 @@
     justify-content: space-evenly;
 }
 
+.dialogPlayerOneComputer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+    margin-top: -10px;
+}
+
+.XOButton {
+    font-size: 40px;
+    width: 50px;
+    height: 50px;
+}
