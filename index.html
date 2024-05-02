@@ -10,14 +10,25 @@
     <div class="Header">
         <div class="headerDiv">
             <h1>Tic Tac Toe</h1>
+            <div class="Scores">
+                <div>
+                    <a class="Score ScorePlayerOne">0</a>
+                </div>
+                <div>
+                    <a class="Score Dash">-</a>
+                </div>
+                <div>
+                    <a class="Score ScorePlayerTwo">0</a>
+                </div>
+            </div>
             <div class="Players">
                 <div class="PlayerOne">
                     <label for="PlayerOne">Player X:</label>
-                    <input type="text" id="PlayerOne" placeholder="Player 1">
+                    <input type="text" id="PlayerOne" class="playersNamesInput" placeholder="Player 1" maxlength="10">
                 </div >
                 <div class="PlayerTwo">
                     <label for="PlayerTwo">Player O:</label>
-                    <input type="text" id="PlayerTwo" placeholder="Player 2">
+                    <input type="text" id="PlayerTwo" class="playersNamesInput" placeholder="Player 2" maxlength="10">
                 </div>
             </div>
         </div>
@@ -34,38 +45,40 @@
             <div class="Button _7"></div>
             <div class="Button _8"></div>
         </div>
-        <dialog class="dialogStart">
+        <dialog class="dialogStart dialogCard">
             <div>
                 <button class="buttonStart">Start game</button>
             </div>
         </dialog>
-        <dialog class="dialogGameMode">
-            <p>Choose game mode:</p>
+        <dialog class="dialogGameMode dialogCard">
+            <div>
+                <p>Choose game mode:</p>
+            </div>
             <div>
                 <button class="gamemode TwoPlayers">2 players</button>
                 <button class="gamemode VSComputer">VS computer</button>
             </div>
         </dialog>
-        <dialog class="dialogTwoPlayer">
-            <p class="playerNames">Choose players names:</p>
+        <dialog class="dialogTwoPlayer dialogCard">
+            <div> <p class="playerNames">Choose players names:</p> </div>
             <div class="Players">
                 <div class="divPlayersNames">
                     <div class="PlayerOne">
                         <label for="dialogPlayerOne">Player X:</label>
-                        <input type="text" id="dialogPlayerOne" placeholder="Player 1">
+                        <input type="text" id="dialogPlayerOne" class="playersNamesInput" placeholder="Player 1" maxlength="10">
                     </div >
                     <div class="PlayerTwo">
                         <label for="dialogPlayerTwo">Player O:</label>
-                        <input type="text" id="dialogPlayerTwo" placeholder="Player 2">
+                        <input type="text" id="dialogPlayerTwo" class="playersNamesInput" placeholder="Player 2" maxlength="10">
                     </div>
                 </div>
             </div>
-            <div class="dialogBackContinue">
+            <div class="dialogBackContinue dialogCard">
                 <button class="gamemode Back">Back</button>
                 <button class="gamemode Continue">Continue</button>
             </div>
         </dialog>
-        <dialog class="dialog"> 
+        <dialog class="dialog dialogCard"> 
             <p class="dialogText"></p>
             <div class="buttonContainer">
                 <button class="dialogButton">Ok</button>
