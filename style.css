@@ -1,22 +1,32 @@
+body {
+    background-color: rgb(230, 230, 230);
+}
+
 .Header {
     display: flex;
     justify-content: center;
 }
 
-.headerDiv {
-    width: 450px;
-}
-
-.headerDiv h1{
+.Title {
     display: flex;
     justify-content: center;
+    margin-bottom: -10px;
+}
+
+.Scores {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: clamp(10px, 30vw, 30px);
 }
 
 .Players {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 15px;
-    margin-top: -20px;
+    margin-bottom: 5px;
+}
+
+.playersNamesInput {
+    width: clamp(100px, 150px, 200px);
+    background-color: rgb(230, 230, 230);
 }
 
 .Main {
@@ -29,15 +39,15 @@
     width: 450px;
     height: 450px;
     display: grid;
-    grid-template-columns: 150px 150px 150px;
-    grid-template-rows: 150px 150px 150px;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-template-rows: repeat(3, minmax(100px, 1fr));
     padding: 10px;
 }
 
 .Button {
     border: solid 1px gray;
     padding: 10px;
-    font-size: 150px;
+    font-size: clamp(100px, 30vw, 150px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,12 +100,14 @@
     margin-top: -5px;
 }
 
-.dialogPlayerOne {
-    margin: 0px 0px 5px 5px;
+.dialogCard {
+    background-color: rgb(230, 230, 230);
 }
 
-.dialogPlayerTwo {
-    margin: 5px 0px 0px 5px;
+.ChooseGameMode {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
 }
 
 .dialogBackContinue {
