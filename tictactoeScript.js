@@ -55,6 +55,8 @@ playerTwo.value = 'O';
 // Who's move is it? 
 let player = {
     value: 'O',
+    computer: false,
+    ChooseO: false,
 
     getValue: function(){
         if (this.value == 'O'){
@@ -78,13 +80,35 @@ let player = {
         } else {
             return move;
         }
+    },
+
+    vsComputer: function(){
+        this.computer = true;
+        return this.computer;
+    }, 
+
+    vsPlayer: function(){
+        this.computer = false;
+        return this.computer;
+    }, 
+
+    setO: function(){
+        this.ChooseO = true; // Computer set first move
+        return this.ChooseO;
+    },
+
+    setX: function(){
+        this.playerChooseO = false; // player set first move
+        return this.ChooseO;
     }
+
 };
 
 function addMove( playerValue, playerMove ) {
     // Check if gameboard spot is empty
     if (gameboard()[playerMove] == ''){
         gameboard()[playerMove] = playerValue;
+
         return gameboard;
     } else if (playerMove == null) {
         game.end();
@@ -109,8 +133,8 @@ function checkForDraw(gameboard){
         returnGB(gameboard);
         console.log("it's a draw, game over!");
         dialogText.innerHTML = "It's a draw, game over!";
-        dialog.showModal();
         game.end();
+        dialog.showModal();
     }
 };
 
@@ -131,7 +155,8 @@ function getGB() {
     solutions = [ verticalOne, verticalTwo, verticalThree, horizontallOne, horizontalTwo, horizontalThree, diagonalOne, diagonalTwo ];
     return solutions;
 };
-
+const ScorePlayerOne = document.querySelector('.ScorePlayerOne');
+const ScorePlayerTwo = document.querySelector('.ScorePlayerTwo');
 
 // Loop thru solutions to check if the game has been won. 
 function checkSolutions(){
@@ -158,10 +183,12 @@ function checkSolutions(){
                 dialogText.innerHTML = nameX.value+ " has won!";
                 dialog.showModal();
             }
+            ScorePlayerOne.innerHTML = Number(ScorePlayerOne.innerHTML) + 1
             game.end();
         } else if (countO == 3) {
+            game.end();
             returnGB(gameboard);
-            const nameO = document.querySelector('#PlayerTwo');
+            let nameO = document.querySelector('#PlayerTwo');
             if (nameO.value == '') {
                 console.log('O has won!');
                 dialogText.innerHTML = "O has won!";
@@ -171,7 +198,7 @@ function checkSolutions(){
                 dialogText.innerHTML = nameO.value+ " has won!";
                 dialog.showModal();
             }
-            game.end();
+            ScorePlayerTwo.innerHTML = Number(ScorePlayerTwo.innerHTML) + 1;
         }
     }
     // console.log('Check done!'); conform that check is done. 
@@ -189,61 +216,27 @@ const game = {
     }
 }
 
-// function computerOptions(solutions, player){
-//     getGB();
-//     solutionOption = []
-//     for (let option = 0; option < solutions.length; option++){
-//         solutionCount = 0;
-//         for (let i = 0; i < solutions[option].length; i++){
-//             if (solutions[option][i] == this.player) {
-                
-//             } else {
-//                 solutionCount = 0;
-//             }
-//         }
-//         if (solutionCount == 3) {
-//             solutionOption.append(solutions[option])
-//         }
-//     return solutionOption;
-// }
-
-// function computerMove() {
-
-// }
 
 function computerMoveRandom(gameboard) {
     getMove = true;
     while (getMove) {
-        randomNumber = Math.floor(Math.random()*gameboard.length)
-        if (gameboard[randomNumber] == '') {
+        randomNumber = Math.floor(Math.random()*gameboard().length)
+        if (gameboard()[randomNumber] == '') {
             getMove = false;
-            return randomNumber;
+            // Update GUI
+            let buttonClass = '.Button._'+ randomNumber;
+            let buttonNumber = document.querySelector(buttonClass);
+            buttonNumber.innerHTML = player.getValue();   
+            addMove( buttonNumber.innerHTML, randomNumber );
+            checkSolutions(gameboard);
+            checkForDraw(gameboard);
         }
     }
-    // addMove( player.getValue(), computerMoveRandom(gameboard()) )
 }
 
 function updateGUIGameboard(gameboard) {
     
 }
-
-
-
-
-////////// console play only. //////////// 
-// function GameControl() {
-//     game.start();
-
-//     while(startGame == true){
-//         // create gameboard
-//         returnGB(gameboard);
-//         // addMove( player.getValue(), player.getMove() );
-//         checkSolutions(gameboard);
-//         checkForDraw(gameboard);
-//     }
-// };
-
-// GameControl(); // Aan vanaf het begin?
 
 const startDialog = document.querySelector('.dialogStart');
 startDialog.showModal();
@@ -264,6 +257,13 @@ buttons.forEach((button) => {
                 button.innerHTML = playerValue;
                 checkSolutions(gameboard);
                 checkForDraw(gameboard);
+                if (startGame == true){ // game is still running
+                    if (player.computer == true) {
+                        setTimeout(() => {  // Timer added to Computer move
+                            computerMoveRandom(gameboard); 
+                        }, 200);
+                    }
+                }
             } else { // gameboard spot is already taken, ask again. 
                 player.getValue(); // keeping the same player value!
             }
@@ -333,6 +333,7 @@ gameModes.forEach((gamemode) => {
             // Start
             gameMode.close();
             dialogVSComputer.showModal();
+
         }
             if (event.target.classList.contains("dialogBack")) {
                 // Choose Back
@@ -348,18 +349,34 @@ gameModes.forEach((gamemode) => {
                 playerTwoComputer.innerHTML = 'Computer O';
                 // remove player2 text button.
                 nameO.style.display = "none"; 
+                player.vsComputer(); // Computer makes a move ?? 
+                player.setX();
             }
             if (event.target.classList.contains("O")) {
-                // Choose X
+                // Choose O
                 // close dialog
                 dialogVSComputer.close();
                 game.start();
                 playerOneComputer.innerHTML = 'Computer X';
                 // remove player2 text button.
                 nameX.style.display = "none"; 
+                player.vsComputer(); 
+                player.setO(); // Computer makes first move
+                computerMoveRandom(gameboard);
             }
         // End game dialog
         // Menu or Restart
+       // Verkrijg het dialoogvenster
+        var dialog = document.querySelector('dialog');
+
+        // Voeg een click event listener toe aan het window object
+        window.addEventListener('click', function(event) {
+            // Controleer of de klik buiten het dialoogvenster heeft plaatsgevonden
+            if (event.target == dialog) {
+                // Als de klik buiten het dialoogvenster heeft plaatsgevonden, voorkom dan dat het dialoogvenster sluit
+                event.preventDefault();
+            }
+        })
         if (event.target.classList.contains("dialogMenu")) {
             // Choose Menu
             // close dialog
@@ -370,9 +387,28 @@ gameModes.forEach((gamemode) => {
             playerTwoComputer.innerHTML = 'Player O';
             nameX.style.display = "inline-block";
             nameO.style.display = "inline-block";
+            ScorePlayerOne.innerHTML = 0;
+            ScorePlayerTwo.innerHTML = 0;
             gameMode.showModal();
+            player.vsPlayer(); // Computer turned off!
         }
-            // dialogRestart
+        if (event.target.classList.contains("dialogRestart")) {
+            // Choose Restart
+            // close dialog
+            dialog.close();
+            game.start();
+
+            if (player.ChooseO == true){
+                console.log('Dit wordt gelezen, maar hieronder niet uitgevoerd?')
+                setTimeout(() => {  // Timer added to Computer move
+                    computerMoveRandom(gameboard); 
+                }, 200);
+
+            } else {
+                player.setX();
+                player.resetValue(); // return to X!
+            }
+        }
 
     })
 });
