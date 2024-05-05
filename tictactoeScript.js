@@ -216,7 +216,6 @@ const game = {
     }
 }
 
-
 function computerMoveRandom(gameboard) {
     getMove = true;
     while (getMove) {
@@ -234,10 +233,7 @@ function computerMoveRandom(gameboard) {
     }
 }
 
-function updateGUIGameboard(gameboard) {
-    
-}
-
+// Start dialog
 const startDialog = document.querySelector('.dialogStart');
 startDialog.showModal();
 
@@ -366,17 +362,6 @@ gameModes.forEach((gamemode) => {
             }
         // End game dialog
         // Menu or Restart
-       // Verkrijg het dialoogvenster
-        var dialog = document.querySelector('dialog');
-
-        // Voeg een click event listener toe aan het window object
-        window.addEventListener('click', function(event) {
-            // Controleer of de klik buiten het dialoogvenster heeft plaatsgevonden
-            if (event.target == dialog) {
-                // Als de klik buiten het dialoogvenster heeft plaatsgevonden, voorkom dan dat het dialoogvenster sluit
-                event.preventDefault();
-            }
-        })
         if (event.target.classList.contains("dialogMenu")) {
             // Choose Menu
             // close dialog
